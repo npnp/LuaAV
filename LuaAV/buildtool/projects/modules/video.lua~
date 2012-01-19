@@ -13,7 +13,7 @@ Project{
 				"-DOF_VIDEO_CAPTURE_GSTREAMER",
 				"-DOF_GST_USING_HAL",
 				"-DVIDEO_USE_GST",
-				"`pkg-config --cflags glib-2.0 dbus-1`",
+				"`pkg-config --cflags --libs glib-2.0 dbus-1`",
 			},
 			WIN32 = {}
 		})[OS]
@@ -25,7 +25,7 @@ Project{
 		({
 			OSX = {},
 			LINUX = {
-				"`pkg-config --libs glib-2.0 dbus-1`",
+				"WTF",
 			},
 			WIN32 = {}
 		})[OS]

@@ -1,0 +1,2 @@
+g++: error: /home/nesa/Developer/nLuaAV/LuaAV/LuaAV/buildtool/../modules/video/build/Debug/ofGstUtils.o: No such file or directory
+g++: error: /home/nesa/Developer/nLuaAV/LuaAV/LuaAV/buildtool/../modules/video/build/Debug/ofVideoGrabber.o: No such file or directory
