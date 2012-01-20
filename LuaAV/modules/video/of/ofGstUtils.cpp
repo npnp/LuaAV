@@ -32,8 +32,22 @@ extern "C" {
 #include <unistd.h>
 #include <sys/ioctl.h>
 //#include <linux/videodev.h>
-// #include <linux/videodev2.h>
 
+    #include <linux/videodev2.h>  
+      
+    #define VIDIOCGCAP              _IOR('v',1,struct video_capability)     /* Get capabilities */  
+      
+    struct video_capability  
+    {  
+             char name[32];  
+             int type;  
+             int channels;   /* Num channels */  
+             int audios;     /* Num audio devices */  
+             int maxwidth;   /* Supported width */  
+             int maxheight;  /* And height */  
+             int minwidth;   /* Supported width */  
+             int minheight;  /* And height */  
+    };
 static bool plugin_registered = false;
 static bool gst_inited = false;
 //------------------------------------

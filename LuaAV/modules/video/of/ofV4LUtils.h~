@@ -64,8 +64,9 @@
 #include <sys/mman.h>
 #include <sys/types.h>
 #include <time.h>
-//#include <asm/types.h>          /* for videodev2.h */
+#include <asm/types.h>          /* for videodev2.h */
 //#include <linux/videodev.h>
+
 
 #define HAVE_V4L	1
 

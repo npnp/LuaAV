@@ -106,7 +106,7 @@
 
 #ifdef TARGET_LINUX
 
-    #define OF_VIDEO_CAPTURE_V4L
+   // #define OF_VIDEO_CAPTURE_V4L
 
 #else
 
