@@ -1,6 +1,6 @@
 #include "Video.h"
 #include "VideoCamera.h"
-#include "VideoRecorder.h"
+//#include "VideoRecorder.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -23,7 +23,7 @@ extern "C" {
 
 using video::Video;
 using video::VideoCamera;
-using video::VideoRecorder;
+//using video::VideoRecorder;
 
 
 /*! Video file playing and video camera streaming
@@ -449,6 +449,7 @@ template<> void Glue<VideoCamera>::usr_mt(lua_State * L) {
 	@param [dim] The dimensions (defaults to 720x480)
 	@name M:open
 */
+/*
 int lua_video_recorder_open(lua_State *L) {
 	VideoRecorder *s = Glue<VideoRecorder>::checkto(L, 1);
 	if(s && lua::is<const char *>(L, 2)) {
@@ -463,10 +464,12 @@ int lua_video_recorder_open(lua_State *L) {
 	}
 	return 1;
 }
+*/
 
 /*! Close the video file
 	@name M:close
 */
+/*
 int lua_video_recorder_close(lua_State *L) {
 	VideoRecorder *s = Glue<VideoRecorder>::checkto(L, 1);
 	if(s) {
@@ -477,11 +480,12 @@ int lua_video_recorder_close(lua_State *L) {
 	}
 	return 1;
 }
-
+*/
 /*! Save a frame of video
 	@param mat The video frame to save
 	@name M:fromarray
 */
+/*
 int lua_video_recorder_fromarray(lua_State *L) {
 	VideoRecorder *s = Glue<VideoRecorder>::checkto(L, 1);
 	AlloArray *lat = lua_array_to(L, 2);
@@ -493,8 +497,9 @@ int lua_video_recorder_fromarray(lua_State *L) {
 	}
 	return 0;
 }
+*/
 
-template<> const char * Glue<VideoRecorder>::usr_name() { return "VideoRecorder"; }
+/*template<> const char * Glue<VideoRecorder>::usr_name() { return "VideoRecorder"; }
 template<> bool Glue<VideoRecorder>::usr_has_index() { return true; }
 
 template<> void Glue<VideoRecorder>::usr_push(lua_State * L, VideoRecorder * u) {
@@ -539,7 +544,7 @@ template<> void Glue<VideoRecorder>::usr_mt(lua_State * L) {
 	};
 	Glue<VideoRecorder>::usr_attr_mt(L, methods, getters, setters);
 }
-
+*/
 
 
 
@@ -561,8 +566,8 @@ int luaopen_video(lua_State *L) {
 	Glue<VideoCamera>::define(L);
 	Glue<VideoCamera>::register_ctor(L);
 	
-	Glue<VideoRecorder>::define(L);
-	Glue<VideoRecorder>::register_ctor(L);
+//	Glue<VideoRecorder>::define(L);
+//	Glue<VideoRecorder>::register_ctor(L);
 	
 	lua::pushfield<int>(L, -1, "RGB", (int)video::PIX_FMT_RGB);
 	lua::pushfield<int>(L, -1, "RGBA", (int)video::PIX_FMT_RGBA);
