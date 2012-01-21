@@ -5,7 +5,7 @@ local sketch = require("opengl.sketch")
 
 local video = require("video")
 local Video = video.Video
-local Rec = video.VideoRecorder
+--local Rec = video.VideoRecorder
 
 local random = math.random
 
@@ -17,8 +17,8 @@ local vid = Video()
 vid:open(LuaAV.findfile("slowbird.m4v"))
 vid:play()
 
-local rec = Rec()
-rec:open(script.path.."/test.mov", vid.dim)
+--local rec = Rec()
+--rec:open(script.path.."/test.mov", vid.dim)
 
 print("speed:", vid.speed)
 print("dur:", vid.dur)
@@ -45,11 +45,11 @@ end)
 
 go(function()
 	while(now() < 5) do
-		rec:fromarray(vid:array())
+--		rec:fromarray(vid:array())
 		wait(1/30)
 	end
 	print("DONE")
-	rec:close()
+--	rec:close()
 end)
 
 
