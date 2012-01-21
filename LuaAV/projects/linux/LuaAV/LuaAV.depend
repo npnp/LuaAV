@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1327101114 source:/home/nesa/n2LuaAV/LuaAV/LuaAV/modules/video/of/ofGraphics.cpp
+	"ofGraphics.h"
+	<OpenGL/glu.h>
+	"GL/glu.h"
+	"glu.h"
+	<vector>
+
+1327101114 /home/nesa/n2LuaAV/LuaAV/LuaAV/modules/video/of/ofGraphics.h
+	"ofConstants.h"
+
+1327101114 /home/nesa/n2LuaAV/LuaAV/LuaAV/modules/video/of/ofConstants.h
+	<unistd.h>
+	<unistd.h>
+	<stdio.h>
+	<math.h>
+	<time.h>
+	<stdlib.h>
+	<string.h>
+	<string>
+	<sstream>
+	<iomanip>
+
