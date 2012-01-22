@@ -33,7 +33,7 @@ using video::VideoCamera;
 
 
 /*! Video file player
-	
+
 	@module video.Video
 */
 
@@ -267,11 +267,11 @@ template<> void Glue<Video>::usr_newindex(lua_State * L, Video * u) {
 }
 
 template<> int Glue<Video>::usr_tostring(lua_State * L, Video * u) {
-	lua_pushfstring(L, "%s: %p", Glue<Video>::usr_name(), u); 
+	lua_pushfstring(L, "%s: %p", Glue<Video>::usr_name(), u);
 	return 1;
 }
 
-template<> void Glue<Video>::usr_gc(lua_State * L, Video * u) { 
+template<> void Glue<Video>::usr_gc(lua_State * L, Video * u) {
 	delete u;
 }
 
@@ -284,7 +284,7 @@ template<> void Glue<Video>::usr_mt(lua_State * L) {
 		{"array", lua_video_array},
 		{ NULL, NULL}
 	};
-	
+
 	static luaL_reg getters[] = {
 		{"pos", lua_video_pos},
 		{"speed", lua_video_speed},
@@ -294,7 +294,7 @@ template<> void Glue<Video>::usr_mt(lua_State * L) {
 		{"dim", lua_video_dim},
 		{ NULL, NULL}
 	};
-	
+
 	static luaL_reg setters[] = {
 		{"pos", lua_video_pos},
 		{"speed", lua_video_speed},
@@ -307,7 +307,7 @@ template<> void Glue<Video>::usr_mt(lua_State * L) {
 
 
 /*! Video camera streamer
-	
+
 	@module video.VideoCamera
 */
 
@@ -410,11 +410,11 @@ template<> void Glue<VideoCamera>::usr_newindex(lua_State * L, VideoCamera * u) 
 }
 
 template<> int Glue<VideoCamera>::usr_tostring(lua_State * L, VideoCamera * u) {
-	lua_pushfstring(L, "%s: %p", Glue<VideoCamera>::usr_name(), u); 
+	lua_pushfstring(L, "%s: %p", Glue<VideoCamera>::usr_name(), u);
 	return 1;
 }
 
-template<> void Glue<VideoCamera>::usr_gc(lua_State * L, VideoCamera * u) { 
+template<> void Glue<VideoCamera>::usr_gc(lua_State * L, VideoCamera * u) {
 	delete u;
 }
 
@@ -425,7 +425,7 @@ template<> void Glue<VideoCamera>::usr_mt(lua_State * L) {
 		{"array", lua_video_camera_array},
 		{ NULL, NULL}
 	};
-	
+
 	static luaL_reg getters[] = {
 		{"format", lua_video_camera_format},
 		{ NULL, NULL}
@@ -440,7 +440,7 @@ template<> void Glue<VideoCamera>::usr_mt(lua_State * L) {
 
 
 /*! Video recorder
-	
+
 	@module video.VideoRecorder
 */
 
@@ -454,7 +454,7 @@ int lua_video_recorder_open(lua_State *L) {
 	VideoRecorder *s = Glue<VideoRecorder>::checkto(L, 1);
 	if(s && lua::is<const char *>(L, 2)) {
 		const char *filename = lua::to<const char *>(L, 2);
-	
+
 		int dim[] = {720, 480};
 		lua::to_vec(L, 3, 2, dim);
 		s->open(filename, dim[0], dim[1]);
@@ -520,11 +520,11 @@ template<> void Glue<VideoRecorder>::usr_newindex(lua_State * L, VideoRecorder *
 }
 
 template<> int Glue<VideoRecorder>::usr_tostring(lua_State * L, VideoRecorder * u) {
-	lua_pushfstring(L, "%s: %p", Glue<VideoRecorder>::usr_name(), u); 
+	lua_pushfstring(L, "%s: %p", Glue<VideoRecorder>::usr_name(), u);
 	return 1;
 }
 
-template<> void Glue<VideoRecorder>::usr_gc(lua_State * L, VideoRecorder * u) { 
+template<> void Glue<VideoRecorder>::usr_gc(lua_State * L, VideoRecorder * u) {
 	delete u;
 }
 
@@ -535,7 +535,7 @@ template<> void Glue<VideoRecorder>::usr_mt(lua_State * L) {
 		{"fromarray", lua_video_recorder_fromarray},
 		{ NULL, NULL}
 	};
-	
+
 	static luaL_reg getters[] = {
 		{ NULL, NULL}
 	};
@@ -554,21 +554,21 @@ extern "C" {
 
 int luaopen_video(lua_State *L) {
 	const char * libname = lua_tostring(L, 1);
-	
+
 	struct luaL_reg lib[] = {
 		{ NULL, NULL }
 	};
 	luaL_register(L, libname, lib);
-	
+
 	Glue<Video>::define(L);
 	Glue<Video>::register_ctor(L);
-	
+
 	Glue<VideoCamera>::define(L);
 	Glue<VideoCamera>::register_ctor(L);
-	
+
 //	Glue<VideoRecorder>::define(L);
 //	Glue<VideoRecorder>::register_ctor(L);
-	
+
 	lua::pushfield<int>(L, -1, "RGB", (int)video::PIX_FMT_RGB);
 	lua::pushfield<int>(L, -1, "RGBA", (int)video::PIX_FMT_RGBA);
 

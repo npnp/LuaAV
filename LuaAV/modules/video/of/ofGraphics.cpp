@@ -15,7 +15,7 @@
 #endif
 
 #include <vector>
-    
+
 //----------------------------------------------------------
 // static
 GLuint 			precachedCircle;
@@ -457,7 +457,7 @@ std::vector <double*> polyVertices;
 //---------------------------- and for curve vertexes, since we need 4 to make a curve
 std::vector <double*> curveVertices;
 
-static int 				currentStartVertex = 0; 
+static int 				currentStartVertex = 0;
 
 // what is the starting vertex of the shape we are drawing
 // this allows multi contour polygons;
@@ -534,9 +534,9 @@ void clearTessVertices(){
     // -------------------------------------------------
 
     clearCurveVertices();
-    
-    
-    currentStartVertex = 0; 
+
+
+    currentStartVertex = 0;
 }
 
 //----------------------------------------------------------
@@ -587,10 +587,10 @@ void ofBeginShape(){
 	// etc...
 
 	clearTessVertices();
-	
-	
-	// now get the tesselator object up and ready: 
-	
+
+
+	// now get the tesselator object up and ready:
+
 	tobj = gluNewTess();
 
 
@@ -636,7 +636,7 @@ void ofBeginShape(){
 
 	gluTessNormal(tobj, 0.0, 0.0, 1.0);
 	gluTessBeginPolygon( tobj, NULL);
-	
+
 }
 
 //----------------------------------------------------------
@@ -717,7 +717,7 @@ void ofCurveVertex(float x, float y){
 
 void ofBezierVertex(float x1, float y1, float x2, float y2, float x3, float y3){
 
-	
+
 	clearCurveVertices();	// we drop any stored "curve calls"
 
 
@@ -766,11 +766,11 @@ void ofBezierVertex(float x1, float y1, float x2, float y2, float x3, float y3){
 
 //----------------------------------------------------------
 void ofNextContour(bool bClose){
-	
+
 	if ((bClose == true)){
 		//---------------------------
 		if (polyVertices.size() > currentStartVertex){
-			
+
 			double* point = new double[3];
 	 		point[0] = polyVertices[currentStartVertex][0];
 			point[1] = polyVertices[currentStartVertex][1];
@@ -778,8 +778,8 @@ void ofNextContour(bool bClose){
 	 		polyVertices.push_back(point);
  		}
 	}
-	
-	
+
+
 	if ((polyMode == OF_POLY_WINDING_ODD) && (drawMode == OF_OUTLINE)){
 
 		// let's just draw via another method, like glLineLoop
@@ -793,7 +793,7 @@ void ofNextContour(bool bClose){
 		glEnd();
 
 	} else {
-	
+
 		if ( tobj != NULL){
 	      gluTessBeginContour( tobj);
 			for (int i=currentStartVertex; i<polyVertices.size(); i++) {
@@ -802,7 +802,7 @@ void ofNextContour(bool bClose){
 			gluTessEndContour( tobj);
 		}
    	}
-   	
+
    	currentStartVertex = (int)polyVertices.size();
 
 }
@@ -818,13 +818,13 @@ void ofEndShape(bool bClose){
 	if ((bClose == true)){
 		//---------------------------
 		if (polyVertices.size() > currentStartVertex){
-			
+
 			double* point = new double[3];
 	 		point[0] = polyVertices[currentStartVertex][0];
 			point[1] = polyVertices[currentStartVertex][1];
 			point[2] = 0;
 	 		polyVertices.push_back(point);
-	 		
+
  		}
 	}
 	//------------------------------------------------
@@ -854,18 +854,18 @@ void ofEndShape(bool bClose){
 			gluTessEndContour( tobj);
 		}
    	}
-	
-	
+
+
 	if ( tobj != NULL){
 		// no matter what we did / do, we need to delete the tesselator object
 		gluTessEndPolygon( tobj);
 		gluDeleteTess( tobj);
 		tobj = NULL;
 	}
-	
+
    	// now clear the vertices on the dynamically allocated data
    	clearTessVertices();
-   	
+
    	if (bSmoothHinted && drawMode == OF_OUTLINE) endSmoothing();
 
 }

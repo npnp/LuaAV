@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="../../../modules/video/of/ofGstUtils.h" open="1" top="1" tabpos="0">
-		<Cursor position="187" topLine="3" />
+	<File name="../../../modules/video/of/ofGraphics.cpp" open="1" top="1" tabpos="0">
+		<Cursor position="1707" topLine="57" />
+	</File>
+	<File name="../../../modules/video/of/ofGstUtils.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="265" topLine="8" />
+	</File>
+	<File name="../../../modules/video/of/ofGstUtils.h" open="0" top="0" tabpos="1">
+		<Cursor position="121" topLine="3" />
+	</File>
+	<File name="../../../modules/video/src/lua_video.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="114" topLine="0" />
+	</File>
+	<File name="../../../modules/video/src/video/Video.h" open="0" top="0" tabpos="4">
+		<Cursor position="55" topLine="0" />
+	</File>
+	<File name="../../../modules/video/src/video/ofVideoCameraImpl.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="195" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

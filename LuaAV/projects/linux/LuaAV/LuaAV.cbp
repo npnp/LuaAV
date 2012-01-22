@@ -14,12 +14,6 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add option="-DTARGET_LINUX" />
-					<Add option="-DOF_VIDEO_PLAYER_GSTREAMER" />
-					<Add option="-DOF_VIDEO_CAPTURE_GSTREAMER" />
-					<Add option="-DOF_GST_USING_HAL" />
-					<Add option="-DVIDEO_USE_GST" />
-					<Add option="`pkg-config --cflags glib-2.0 dbus-1`" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -37,7 +31,29 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="`pkg-config --cflags glib-2.0 dbus-1 gstreamer-0.10 hal lua5.1`" />
+			<Add option="-fmessage-length=0" />
+			<Add option="-pipe" />
+			<Add option="-fPIC" />
+			<Add option="-Wno-trigraphs" />
+			<Add option="-Wreturn-type" />
+			<Add option="-Wunused-variable" />
+			<Add option="-DTARGET_LINUX" />
+			<Add option="-DOF_VIDEO_PLAYER_GSTREAMER" />
+			<Add option="-DOF_VIDEO_CAPTURE_GSTREAMER" />
+			<Add option="-DOF_GST_USING_HAL" />
+			<Add option="-DVIDEO_USE_GST" />
+			<Add option="-D__LINUX__" />
+			<Add directory="../../../modules/video/src/video" />
+			<Add directory="../../../dev/include" />
+			<Add directory="../../../modules/video/of" />
+			<Add directory="../../../modules/video/src" />
 		</Compiler>
+		<Linker>
+			<Add option="`pkg-config --libs glib-2.0 dbus-1 gstreamer-0.10 hal lua5.1`" />
+			<Add library="/usr/lib/GL" />
+			<Add library="/usr/lib/GLU" />
+		</Linker>
 		<Unit filename="../../../modules/video/of/ofConstants.h">
 			<Option virtualFolder="modules/video/of/" />
 		</Unit>
@@ -53,56 +69,14 @@
 		<Unit filename="../../../modules/video/of/ofGstUtils.h">
 			<Option virtualFolder="modules/video/of/" />
 		</Unit>
-		<Unit filename="../../../modules/video/of/ofQtUtils.cpp">
-			<Option virtualFolder="modules/video/of/" />
-		</Unit>
-		<Unit filename="../../../modules/video/of/ofQtUtils.h">
-			<Option virtualFolder="modules/video/of/" />
-		</Unit>
-		<Unit filename="../../../modules/video/of/ofV4LUtils.h">
-			<Option virtualFolder="modules/video/of/" />
-		</Unit>
 		<Unit filename="../../../modules/video/of/ofVideoGrabber.cpp">
 			<Option virtualFolder="modules/video/of/" />
 		</Unit>
 		<Unit filename="../../../modules/video/of/ofVideoGrabber.h">
 			<Option virtualFolder="modules/video/of/" />
 		</Unit>
-		<Unit filename="../../../modules/video/of/ofVideoPlayer.cpp">
-			<Option virtualFolder="modules/video/of/" />
-		</Unit>
-		<Unit filename="../../../modules/video/of/ofVideoPlayer.h">
-			<Option virtualFolder="modules/video/of/" />
-		</Unit>
-		<Unit filename="../../../modules/video/of/ofxQtVideoSaver.cpp">
-			<Option virtualFolder="modules/video/of/" />
-		</Unit>
-		<Unit filename="../../../modules/video/of/ofxQtVideoSaver.h">
-			<Option virtualFolder="modules/video/of/" />
-		</Unit>
 		<Unit filename="../../../modules/video/src/lua_video.cpp">
 			<Option virtualFolder="modules/video/src/" />
-		</Unit>
-		<Unit filename="../../../modules/video/src/video/FFMPEGUtils.h">
-			<Option virtualFolder="modules/video/src/video/" />
-		</Unit>
-		<Unit filename="../../../modules/video/src/video/FFMPEGVideoCameraImpl.cpp">
-			<Option virtualFolder="modules/video/src/video/" />
-		</Unit>
-		<Unit filename="../../../modules/video/src/video/FFMPEGVideoCameraImpl.h">
-			<Option virtualFolder="modules/video/src/video/" />
-		</Unit>
-		<Unit filename="../../../modules/video/src/video/FFMPEGVideoImpl.cpp">
-			<Option virtualFolder="modules/video/src/video/" />
-		</Unit>
-		<Unit filename="../../../modules/video/src/video/FFMPEGVideoImpl.h">
-			<Option virtualFolder="modules/video/src/video/" />
-		</Unit>
-		<Unit filename="../../../modules/video/src/video/FFMPEGVideoRecorderImpl.cpp">
-			<Option virtualFolder="modules/video/src/video/" />
-		</Unit>
-		<Unit filename="../../../modules/video/src/video/FFMPEGVideoRecorderImpl.h">
-			<Option virtualFolder="modules/video/src/video/" />
 		</Unit>
 		<Unit filename="../../../modules/video/src/video/GstUtils.cpp">
 			<Option virtualFolder="modules/video/src/video/" />
@@ -114,12 +88,6 @@
 			<Option virtualFolder="modules/video/src/video/" />
 		</Unit>
 		<Unit filename="../../../modules/video/src/video/GstVideoImpl.h">
-			<Option virtualFolder="modules/video/src/video/" />
-		</Unit>
-		<Unit filename="../../../modules/video/src/video/QtKitVideoCameraImpl.h">
-			<Option virtualFolder="modules/video/src/video/" />
-		</Unit>
-		<Unit filename="../../../modules/video/src/video/QtKitVideoImpl.h">
 			<Option virtualFolder="modules/video/src/video/" />
 		</Unit>
 		<Unit filename="../../../modules/video/src/video/Video.cpp">
@@ -147,12 +115,17 @@
 			<Option virtualFolder="modules/video/src/video/" />
 		</Unit>
 		<Unit filename="../../../modules/video/src/video/VideoRecorder.cpp">
+			<Option compile="0" />
+			<Option link="0" />
 			<Option virtualFolder="modules/video/src/video/" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../modules/video/src/video/VideoRecorder.h">
 			<Option virtualFolder="modules/video/src/video/" />
 		</Unit>
 		<Unit filename="../../../modules/video/src/video/VideoRecorderImpl.cpp">
+			<Option compile="0" />
+			<Option link="0" />
 			<Option virtualFolder="modules/video/src/video/" />
 		</Unit>
 		<Unit filename="../../../modules/video/src/video/VideoRecorderImpl.h">
@@ -171,6 +144,8 @@
 			<Option virtualFolder="modules/video/src/video/" />
 		</Unit>
 		<Unit filename="../../../modules/video/src/video/ofVideoRecorderImpl.cpp">
+			<Option compile="0" />
+			<Option link="0" />
 			<Option virtualFolder="modules/video/src/video/" />
 		</Unit>
 		<Unit filename="../../../modules/video/src/video/ofVideoRecorderImpl.h">

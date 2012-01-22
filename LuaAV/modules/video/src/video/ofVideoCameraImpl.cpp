@@ -15,10 +15,10 @@ ofVideoCameraImpl :: ~ofVideoCameraImpl() {
 	close();
 	if(mVideoGrabber) delete mVideoGrabber;
 }
-	
+
 VideoError ofVideoCameraImpl :: open(int w, int h, video::PixelFormat) {
 	VideoError err = VIDEO_ERROR_NONE;
-	
+
 	w = (w <= 0) ? 1 : w;	//set min val
 	h = (h <= 0) ? 1 : h;	//set min val
 
@@ -62,10 +62,10 @@ VideoError ofVideoCameraImpl :: next_frame(AlloArray *mat) {
 		array.header.dim[1] = mVideoGrabber->height;
 		allo_array_setstride(&(array.header), 1);
 		array.data.ptr = (char *)mVideoGrabber->getPixels();
-		
+
 		allo_array_copy(mat, &array);
 	}
-	
+
 	return err;
 }
 
